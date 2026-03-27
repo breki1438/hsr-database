@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/src/generated/prisma
+
+# Database leftovers
+*.db
+*.db-journal
+*.sqlite
+*.sqlite-dev
+
+# Prisma generated artifacts
+/src/generated
+node_modules/
+.env
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/compiler.xml
+/.idea/vcs.xml
