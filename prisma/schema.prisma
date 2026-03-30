@@ -12,7 +12,7 @@ datasource db {
   provider = "postgresql"
 }
 
-enum Element {
+enum Type {
   Fire
   Ice
   Lightning
@@ -30,7 +30,7 @@ enum Path {
   Nihility
   Preservation
   Abundance
-  Rememberance
+  Remembrance
   Elation
 }
 
@@ -39,7 +39,7 @@ model Character {
   gameId    Int      @unique
   name      String   @unique
   rarity    Int
-  element   Element
+  type      Type
   path      Path
   faction   String?
   imageSlug String
