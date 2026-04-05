@@ -27,7 +27,7 @@ export default async function CharactersPage({ searchParams, }: {
             ],
         },
         orderBy: [
-            { gameId: "desc" }
+            { release: "desc" }
         ],
     });
 

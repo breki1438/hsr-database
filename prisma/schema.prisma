@@ -34,15 +34,93 @@ enum Path {
   Elation
 }
 
+enum AbilityType {
+  BASIC_ATK
+  SKILL
+  ULTIMATE
+  TALENT
+  TECHNIQUE
+  ELATION_SKILL
+  MEMOSPRITE_SKILL
+  MEMOSPRITE_TALENT
+}
+
+enum TraceType {
+  ASCENSION_2
+  ASCENSION_4
+  ASCENSION_6
+  SMALL_TRACE
+}
+
 model Character {
-  id        Int      @id @default(autoincrement())
-  gameId    Int      @unique
+  id        Int      @id
   name      String   @unique
   rarity    Int
   type      Type
   path      Path
   faction   String?
+  release   Int
   imageSlug String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  basicStats BaseStats?
+  abilities  Abilities[]
+  traces     Traces[]
+  eidolons   Eidolons[]
+}
+
+model BaseStats {
+  id          Int   @id @default(autoincrement())
+  characterId Int   @unique
+  hpLevels    Int[]
+  defLevels   Int[]
+  atkLevels   Int[]
+
+  spd        Int
+  critRate   Float @default(5.0)
+  critDamage Float @default(50.0)
+  taunt      Int
+  maxEnergy  Int
+
+  character Character @relation(fields: [characterId], references: [id])
+}
+
+model Abilities {
+  id          Int               @id @default(autoincrement())
+  characterId Int
+  type        String
+  name        String
+  desc        String
+  scalings    AbilityScalings[]
+
+  character Character @relation(fields: [characterId], references: [id])
+}
+
+model AbilityScalings {
+  id        Int     @id @default(autoincrement())
+  abilityId Int
+  label     String
+  values    Float[]
+
+  ability Abilities @relation(fields: [abilityId], references: [id])
+}
+
+model Traces {
+  id          Int    @id @default(autoincrement())
+  characterId Int
+  type        String
+  name        String
+  description String
+
+  character Character @relation(fields: [characterId], references: [id])
+}
+
+model Eidolons {
+  id          Int    @id @default(autoincrement())
+  characterId Int
+  eidolonName String
+  eidolonDesc String
+
+  character Character @relation(fields: [characterId], references: [id])
 }

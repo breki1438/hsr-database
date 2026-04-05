@@ -11,7 +11,7 @@ export default function CharacterList({ characters }: CharacterListProps) {
     return (
         <div className={"w-full p-4 grid grid-cols-8 gap-5 gap-y-5"}>
             {characters.map((character) => (
-                <a className="relative flex flex-col w-32 h-44 rounded-xl drop-shadow-lg/50 overflow-hidden hover:outline-2 outline-amber-300 group" key={character.id}>
+                <a className="relative flex flex-col w-32 h-44 rounded-xl drop-shadow-lg/25 overflow-hidden hover:outline-2 outline-amber-300 group" key={character.id}>
                     <div className="relative flex-1 overflow-hidden bg-linear-to-t from-[#EBB373]/75 to-[#D98F39]/75">
                         <Image
                             src={`${supabaseBucketUrl}/icons/character_splash/cropped/${character.imageSlug}_cropped.webp`}
@@ -36,8 +36,8 @@ export default function CharacterList({ characters }: CharacterListProps) {
                             </div>
                         </div>
                     </div>
-                    <div className="w-full bg-linear-to-r from-[#33333B] to-[#382E2E] text-center p-1 z-10 min-h-11 flex justify-center items-center">
-                    <span className="text-sm leading-tight line-clamp-2">
+                    <div className="w-full bg-linear-to-tl from-[#9D96B2]/75 to-[#636D9E]/75 text-center p-1 z-10 min-h-11 flex justify-center items-center">
+                    <span className="text-sm text-shadow-sm/25 leading-tight line-clamp-2">
                         {character.name}
                     </span>
                     </div>
