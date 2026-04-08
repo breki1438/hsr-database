@@ -1,5 +1,6 @@
 import { Character } from "@/generated/prisma/client"
 import Image from "next/image"
+import Link from "next/link"
 
 interface CharacterListProps {
     characters: Character[];
@@ -11,7 +12,7 @@ export default function CharacterList({ characters }: CharacterListProps) {
     return (
         <div className={"w-full p-4 grid grid-cols-8 gap-5 gap-y-5"}>
             {characters.map((character) => (
-                <a className="relative flex flex-col w-32 h-44 rounded-xl drop-shadow-lg/25 overflow-hidden hover:outline-2 outline-amber-300 group" key={character.id}>
+                <Link href={`/characters/${character.id}`} className="relative flex flex-col w-32 h-44 rounded-xl drop-shadow-lg/25 overflow-hidden hover:outline-2 outline-amber-300 group" key={character.id}>
                     <div className="relative flex-1 overflow-hidden bg-linear-to-t from-[#EBB373]/75 to-[#D98F39]/75">
                         <Image
                             src={`${supabaseBucketUrl}/icons/character_splash/cropped/${character.imageSlug}_cropped.webp`}
@@ -41,7 +42,7 @@ export default function CharacterList({ characters }: CharacterListProps) {
                         {character.name}
                     </span>
                     </div>
-                </a>
+                </Link>
             ))}
         </div>
     )
