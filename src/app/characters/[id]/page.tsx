@@ -3,6 +3,7 @@ import Image from "next/image";
 import BasicStats from "@/components/basic-stats";
 import React from "react";
 import {notFound} from "next/navigation";
+import ClickableImage from "@/components/clickable-image";
 
 export default async function CharacterPage({ params }: { params: Promise<{ id: number }>}) {
     const { id } = await params;
@@ -48,17 +49,17 @@ export default async function CharacterPage({ params }: { params: Promise<{ id: 
     return (
         <div className={"flex flex-col"}>
             <div className={"flex justify-between items-start text-shadow-lg"}>
-                <div className={"flex flex-col gap-2"}>
-                    <div className={"flex gap-4 bg-gray-600"}>
+                <div className={"flex flex-col gap-2 items-start"}>
+                    <div className={"flex gap-4"}>
                         <Image
-                            src={`${supabaseBucketUrl}/icons/character_splash/${characterData.name}.webp`}
+                            src={`${supabaseBucketUrl}/icons/character_splash/icon/Character_${characterData.name}.webp`}
                             alt="Character"
-                            width={48}
-                            height={48}
-                            className={"rounded-full bg-gray-700 m-auto"}
+                            width={64}
+                            height={64}
+                            className={"rounded-full m-auto border border-[#E0E0E0]"}
                         />
                         <div className={"flex flex-col"}>
-                            <span className={"text-4xl font-semibold"}>{characterData.name.toUpperCase()}</span>
+                            <span className={"text-4xl font-bold"}>{characterData.name.toUpperCase()}</span>
                             <div className={"flex gap-2"}>
                                 <span>{characterData.rarity} Star</span>
                                 <div className={"flex gap-0.5"}>
@@ -82,11 +83,11 @@ export default async function CharacterPage({ params }: { params: Promise<{ id: 
                             </div>
                         </div>
                     </div>
-                    <span>Faction: {characterData.faction}</span>
+                    <span className={"font-semibold"}>Faction: {characterData.faction}</span>
                     <BasicStats basicStats={basicStats} />
                 </div>
 
-                <Image
+                <ClickableImage
                     src={`${supabaseBucketUrl}/icons/character_splash/Character_${characterData.name}_Splash_Art.webp`}
                     alt="Character Image"
                     width={640}
@@ -123,7 +124,7 @@ export default async function CharacterPage({ params }: { params: Promise<{ id: 
                 <span className={"w-full bg-white h-0.5"}></span>
                 <div className={"flex justify-between my-4"}>
                     {eidolons?.map((eidolon, i: number) => (
-                        <Image
+                        <ClickableImage
                             key={eidolon.id}
                             src={`${supabaseBucketUrl}/icons/eidolons/${characterData.imageSlug}/Character_${characterData.name}_Eidolon_${i + 1}.webp`}
                             alt="Element"
